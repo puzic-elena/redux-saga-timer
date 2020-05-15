@@ -1,32 +1,36 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
-const App = ({active, reset, value, onReset, onStart, onStop}) => (
-    <div>
-        {value}{' '}{reset ? '(Reset)' : (active ? '(Running)' : '(Stopped)')}
+const App = ({active, count, onReset, onStart, onPause}) => (
+
         <div>
-            <br />
-            <button onClick={onReset}>Reset</button>
-            <button onClick={onStart} disabled={active}>Start</button>
-            <button onClick={onStop} disabled={!active}>Stop</button>
+            <header>Timer</header>
+            <div>
+                <span>{count}</span>
+                <div>
+                    <br/>
+                    <button className="btn start" onClick={onStart} disabled={active}>Start</button>
+                    <button className="btn pause" onClick={onPause} disabled={!active}>Pause</button>
+                    <button className="btn reset" onClick={onReset}>Reset</button>
+                </div>
+            </div>
         </div>
-    </div>
 );
 
 const mapStateToProps = (state) => {
     return {
         active: state.active,
         reset: state.reset,
-        value: state.value
+        count: state.count
     };
 };
 
-const mapDispathToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return {
         onStart: () => dispatch({type: 'START'}),
-        onStop: () => dispatch({type: 'STOP'}),
+        onPause: () => dispatch({type: 'PAUSE'}),
         onReset: () => dispatch({type: 'RESET'})
     };
 };
 
-export default connect(mapStateToProps, mapDispathToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
