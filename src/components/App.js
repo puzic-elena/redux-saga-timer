@@ -9,9 +9,9 @@ const App = ({active, count, onReset, onStart, onPause}) => (
                 <span>{count}</span>
                 <div>
                     <br/>
-                    <button className="btn start" onClick={onStart} disabled={active}>Start</button>
-                    <button className="btn pause" onClick={onPause} disabled={!active}>Pause</button>
-                    <button className="btn reset" onClick={onReset}>Reset</button>
+                    <button onClick={onStart} disabled={active}>Start</button>
+                    <button onClick={onPause} disabled={!active}>Pause</button>
+                    <button onClick={onReset}>Reset</button>
                 </div>
             </div>
         </div>
